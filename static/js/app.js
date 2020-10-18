@@ -25,5 +25,5 @@ data.forEach(UFO => {
 //     cell.text(value);
 //   });
 // });
-button = d3.select("#button"),
-form = d3.select("#form");
+let button = d3.select("#filter table"),
+let inputfile = d3.select("#form");
