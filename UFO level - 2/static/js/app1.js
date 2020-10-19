@@ -29,35 +29,24 @@ addData(tableData);
 button.on("click", () => {
 
     d3.event.preventDefault();
-    var inputDate = inputFieldDate.property("value").trim();
-    var inputCity = inputFieldCity.property("value").toLowerCase().trim();
+    //var inputDate = inputFieldDate.property("value").trim();
+    //var inputCity = inputFieldCity.property("value").toLowerCase().trim();
 
     var filterDate = tableData.filter(tableData => tableData.datetime === inputDate);
-   
     var filterCity = tableData.filter(tableData => tableData.city === inputCity);
     var filterState = tableData.filter(tableData => tableData.state === inputState);
-
+    var filterCountry = tableData.filter(tableData => tableData.country === inputCountry);
+    var filterShape = tableData.filter(tableData => tableData.shape === inputShape);
     var filterCombinedData = tableData.filter(tableData => tableData.datetime === inputDate && tableData.city === inputCity);
-    // console.log(filterCombinedData)
-    // var filterCombinedData = tableData.filter(tableData => tableData.datetime === inputDate && tableData.city === inputCity && tableData.state === inputState && tableData.country === inputCountry && tableData.shape === inputShape);
-    // var filterCombinedDateState = tableData.filter(tableData => tableData.datetime === inputDate && tableData.state === inputState);
+    
 
     $tbody.html("");
 
     let response = {
-        filterDate, filterCity, filterCombinedData
+        filterDate, filterCity, filterState, filterCountry, filterShape, filterCombinedData
     }
 
-    // let response = {
-    //     filterDate, filterCity, filterCombinedData, filterState, filterCountry, filterShape
-    // }
-
-    // if(response.filterDate.length !== 0) {
-    //     addData(filterDate);
-    // }
-
-    // Top if only works for filtering the date
-    // Need to accommodate for combining multiple filters, needed to create a new var for it
+   
     if(response.filterCombinedData.length !== 0) {
         addData(filterCombinedData);
     }
@@ -66,12 +55,10 @@ button.on("click", () => {
     //     addData(filterCity);
     // }
         else if(response.filterCombinedData.length === 0 && ((response.filterDate.length !== 0 || response.filterCity.length !== 0))) {
-            addData(filterDate) || addData(filterCity);
+            addData(filterDate) || addData(filterCity) || addData (filterState);
         }
 
-        // else if(response.filterCombinedDateState.length === 0 && ((response.filterDate.length !== 0 || response.filterState.length !== 0))) {
-        //     addData(filterDate) || addData(filterState);
-        // }
+        
 
         else {
             $tbody.append("tr").append("td").text("No Sightings .... Try again");
