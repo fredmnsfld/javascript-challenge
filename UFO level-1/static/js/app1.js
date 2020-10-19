@@ -2,14 +2,14 @@
 // Set data to variable
 var tableData = data;
 
-// Creating References
+// Create References select html tags
 var $tbody = d3.select("tbody");
 var button = d3.select("#filter-btn");
 var inputFieldDate = d3.select("#datetime");
 var inputFieldCity = d3.select("#city");
 var columns = ["datetime", "city", "state", "country", "shape", "durationMinutes", "comments"]
 
-// Inputing the data into the HTML
+// Input the data into the HTML
 var addData = (dataInput) => {
     dataInput.forEach(ufoSightings => {
         var row = $tbody.append("tr");
